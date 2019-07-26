@@ -3,33 +3,16 @@ package com.saber.virtualposition.entities;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Parcel;
-import android.os.Parcelable;
-public class AppInfo implements Parcelable {
+public class AppInfo {
 
     private CharSequence name;
     private String packageName;
     private Intent intent;
     private Drawable icon;
+    private String className;
+
 
     public AppInfo(){}
-
-    public AppInfo(Parcel in) {
-        packageName = in.readString();
-        intent = in.readParcelable(Intent.class.getClassLoader());
-    }
-
-    public static final Creator<AppInfo> CREATOR = new Creator<AppInfo>() {
-        @Override
-        public AppInfo createFromParcel(Parcel in) {
-            return new AppInfo(in);
-        }
-
-        @Override
-        public AppInfo[] newArray(int size) {
-            return new AppInfo[size];
-        }
-    };
 
     /**
      * 设置启动程序的intent
@@ -77,24 +60,11 @@ public class AppInfo implements Parcelable {
         this.icon = icon;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getClassName() {
+        return className;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(packageName);
-        parcel.writeParcelable(intent, i);
-    }
-
-    @Override
-    public String toString() {
-        return "AppInfo{" +
-                "name=" + name +
-                ", packageName='" + packageName + '\'' +
-                ", intent=" + intent +
-                ", icon=" + icon +
-                '}';
+    public void setClassName(String className) {
+        this.className = className;
     }
 }
